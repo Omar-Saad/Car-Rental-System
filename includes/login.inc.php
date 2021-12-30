@@ -13,6 +13,5 @@ if (isset($_POST["submit"])) {
     $login = new loginController($email, $password);
     $login->login();
 
-    header("Location: ../index.php?error=none");
-
+    header("Location: ../Login/index.php?error=none");
 }

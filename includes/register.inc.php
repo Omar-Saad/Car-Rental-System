@@ -13,5 +13,5 @@ if (isset($_POST["submit"])) {
     $register = new RegisterController($email, $username, $password);
     $register->register();
 
-    header("Location: ../index.php?error=none");
+    header("Location: ../Login/index.php?error=none");
 }

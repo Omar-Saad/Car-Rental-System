@@ -48,7 +48,7 @@ include '../partials/header.php';
             </div>
 
             <div>
-                <button type="submit">Register</button>
+                <button type="submit" name="submit">Register</button>
             </div>
 
             <br/>
