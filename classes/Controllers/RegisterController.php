@@ -4,40 +4,57 @@
 class RegisterController extends Register
 {
     private $email;
-    private $username;
+    private $name;
     private $password;
+    private $ssn;
+    private $address;
+    private $phone;
+    private $profileImage;
+   
 
-    public function __construct($email, $username, $password)
+
+    public function __construct($email, $name, $password,$ssn, $address, $phone,$profileImage)
     {
         $this->email = $email;
-        $this->username = $username;
+        $this->name = $name;
         $this->password = $password;
+
+        $this->ssn = $ssn;
+        $this->address = $address;
+        $this->phone = $phone;
+        $this->profileImage = $profileImage;
+        
 
     }
 
     public function register()
     {
-        if ($this->takenEmail($this->email)) {
-            header("Location: ../../resources/index.php?error=takenEmail");
+      
+        if ($this->takenEmail($this->email)==false) {
+            header("Location: ../resources/Login/register.php?error=takenEmail");
         }
-        if ($this->takenUsername($this->username)) {
-            header("Location: ../../resources/index.php?error=takenUsername");
+          if ($this->availableSSN($this->ssn) == false) {
+            header("Location: ../../resources/index.php?error=takenssn");
         }
-        $this->createUser($this->email, $this->username, $this->password);
+        else{
+     
+        echo "\no,fsdfds";
+        $this->createUser($this->email, $this->name, $this->password,$this->ssn
+        , $this->address, $this->phone,$this->profileImage);}
     }
 
     private function emptyInput()
     {
-        if (empty($this->email) || empty($this->username) || empty($this->password)) {
+        if (empty($this->email) || empty($this->name) || empty($this->password)) {
             return false;
         } else {
             return true;
         }
     }
 
-    private function invalidUsername($username)
+    private function invalidname($name)
     {
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $name)) {
             $result = true;
         } else {
             $result = false;
@@ -55,24 +72,24 @@ class RegisterController extends Register
         return $result;
     }
 
-    private function takenUsername($username)
+    /*private function takenname($name)
     {
-        if (!$this->availableUsername($username)) {
+        if (!$this->availablename($name)) {
             $result = True;
         } else {
             $result = False;
         }
         return $result;
     }
-
+*/
     private function takenEmail($email)
     {
-        if (!$this->availableEmail($email)) {
+       /* if (!$this->availableEmail($email)) {
             $result = True;
         } else {
             $result = False;
-        }
-        return $result;
+        }*/
+        return $this->availableEmail($email);
     }
 }
 

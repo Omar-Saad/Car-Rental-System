@@ -3,13 +3,20 @@
 
 class Login extends Dbh
 {
-    private function userExist($email)
+    private function userExist($email,$isAdmin)
     {
-        $query = "SELECT *" . " FROM user WHERE email = ?;";
-        $stmt = $this->$this->connect()->prepare($query);
+        $user = "customer";
+        if($isAdmin == true)
+            $user = "admin";
+        
+
+        $query = "SELECT *" . " FROM $user WHERE email = ?;";
+        
+        $stmt = $this->connect()->prepare($query);
+        
 
         // Query Failed
-        if (!$stmt->execute($email)) {
+        if (!$stmt->execute([$email])) {
             $stmt = NULL;
             header("Location: ../../index.php?error=stmtFailed");
             exit();
@@ -23,21 +30,25 @@ class Login extends Dbh
         return $stmt->fetchAll();
     }
 
-    protected function getUser($email, $password)
+    protected function getUser($email, $password,$isAdmin)
     {
-        $userExist = $this->userExist($email);
+        $userExist = $this->userExist($email,$isAdmin);
         if ($userExist === False){
-            header("Location: ../../index.php?error=wrongUsernameOrPassword");
+           header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
             exit();
         }
 
-        $checkPass = password_verify($password, $userExist(0)["password"]);
+        
+        
+        $checkPass = password_verify($password, $userExist[0]["password"]);
+        
         if ($checkPass === False) {
-            header("Location: ../../index.php?error=wrongUsernameOrPassword");
+           header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
         } else {
+          
             // Starting Session
-            $_SESSION["id"] = $userExist(0)["id"];
-            $_SESSION["email"] = $userExist(0)["email"];
+           // $_SESSION["id"] = $userExist[0]["cust_id"];
+            $_SESSION["email"] = $userExist[0]["email"];
             // TODO :: Location Header
             header("Location: ");
         }

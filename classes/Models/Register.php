@@ -2,9 +2,9 @@
 
 class Register extends Dbh
 {
-    protected function availableUsername($username)
+    /*protected function availableUsername($username)
     {
-        $query = "SELECT *" . " FROM user WHERE username = ?;";
+        $query = "SELECT *" . " FROM customer WHERE username = ?;";
         $stmt = $this->connect()->prepare($query);
 
         if (!$stmt->execute($username)) {
@@ -20,13 +20,13 @@ class Register extends Dbh
             return True;
         }
     }
-
+*/
     protected function availableEmail($email)
     {
-        $query = "SELECT *" . " FROM user WHERE email = ?;";
+        $query = "SELECT *" . " FROM customer WHERE email = ?;";
         $stmt = $this->connect()->prepare($query);
 
-        if (!$stmt->execute($email)) {
+        if (!$stmt->execute([$email])) {
             $stmt = NULL;
             // TODO :: headerLocation
             header("Location: ");
@@ -41,16 +41,36 @@ class Register extends Dbh
         }
     }
 
-    protected function createUser($email, $username, $password)
+    protected function availableSSN($ssn)
     {
-        $query = "INSERT INTO" . " user (email, username, password)
-                    VALUES (?, ?, ?);";
+        $query = "SELECT *" . " FROM customer WHERE ssn = ?;";
+        $stmt = $this->connect()->prepare($query);
+
+        if (!$stmt->execute([$ssn])) {
+            $stmt = NULL;
+            // TODO :: headerLocation
+            header("Location: ");
+            exit();
+        }
+        if ($stmt->rowCount() > 0) {
+            $stmt = NULL;
+            return False;
+        } else {
+            $stmt = NULL;
+            return True;
+        }
+    }
+
+    protected function createUser($email, $name, $password,$ssn, $address, $phone,$profileImage)
+    {
+        $query = "INSERT INTO" . " customer (email, name, password , ssn,address,phone,profile_image)
+                    VALUES (?, ?, ?,?, ?, ?,?);";
         $stmt = $this->connect()->prepare($query);
         $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-        if (!$stmt->execute(array($email, $username, $hashedPass))) {
+        if (!$stmt->execute(array($email, $name, $hashedPass,$ssn, $address, $phone,$profileImage))) {
             $stmt = NULL;
-            header("Location: ../../index.php?error=stmtFailed");
+            header("Location: ../resources/Login/register.php?error=stmtFailed");
             exit();
         }
         $stmt = NULL;
