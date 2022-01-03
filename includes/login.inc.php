@@ -1,12 +1,13 @@
 <?php
-echo $_GET['error'];
-$error = "Wrong Email or Password";
-if (!isset($_GET['error'])) {
-    echo "sdsds";
-    //if($_GET['error'] == "wrongUsernameOrPassword")
-        $error = "Wrong Email or Password";
 
-}
+// $error = "Wrong Email or Password";
+// if (!isset($_GET['error'])) {
+//     echo "sdsds";
+//     //if($_GET['error'] == "wrongUsernameOrPassword")
+//         $error = "Wrong Email or Password";
+
+// }
+session_start();
 
 if (isset($_POST["submit"])) {
 

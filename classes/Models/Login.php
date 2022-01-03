@@ -49,8 +49,13 @@ class Login extends Dbh
             // Starting Session
            // $_SESSION["id"] = $userExist[0]["cust_id"];
             $_SESSION["email"] = $userExist[0]["email"];
+            if($isAdmin){
+                $_SESSION["admin_id"] = $userExist[0]["admin_id"];
+               // echo  $_SESSION["admin_id"];
+                header("Location: ../resources/Admin/index.php");
+            }
             // TODO :: Location Header
-            header("Location: ");
+            //header("Location: ");
         }
         exit();
     }
