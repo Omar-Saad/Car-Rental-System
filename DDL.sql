@@ -13,7 +13,7 @@ PRIMARY KEY(plate_id)
 
 CREATE TABLE specs(
 plate_id int NOT NULL UNIQUE,
-transission VARCHAR(512) NOT NULL,
+transmission VARCHAR(512) NOT NULL,
 body_style VARCHAR(512) NOT NULL,
 AC BIT NOT NULL,
 seats_count INT NOT NULL,

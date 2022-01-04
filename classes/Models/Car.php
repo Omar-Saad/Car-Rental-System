@@ -3,14 +3,14 @@
 // TODO: CAR MODEL 
 class Car extends Dbh
 {
-    /*
+
     private function carExist($plateId)
     {
-       
+
         $query = "SELECT *" . " FROM car WHERE plate_id = ?;";
-        
+
         $stmt = $this->connect()->prepare($query);
-        
+
 
         // Query Failed
         if (!$stmt->execute([$plateId])) {
@@ -21,47 +21,56 @@ class Car extends Dbh
         // Doesn't Exist
         if ($stmt->rowCount() == 0) {
             $stmt = NULL;
-            header("Location: ../../index.php?error=wrongUsernameOrPassword");
+            //header("Location: ../../index.php?error=wrongUsernameOrPassword");
             return False;
         }
         return $stmt->fetchAll();
     }
 
-    protected function createUser($plateId, $status, $model,$year, $price, $image_link)
+    protected function insertCar($plateId,$model , $price,  $year, $status , $car_image,$location)
     {
-        $query = "INSERT INTO" . " car (plate_id, status, model , year,price,image_link)
-                    VALUES (?, ?, ?,?, ?, ?);";
-        $stmt = $this->connect()->prepare($query);
+        if (!$this->carExist($plateId)) {
+            $query = "INSERT INTO" . " car (plate_id, status, model , year,price,image_link , location)
+                    VALUES (?, ?, ?,?, ?, ?,?);";
+            $stmt = $this->connect()->prepare($query);
 
-        if (!$stmt->execute(array($plateId, $status, $model,$year, $price, $image_link))) {
+            if (!$stmt->execute(array($plateId,$model , $price,  $year, $status , $car_image,$location))) {
+                $stmt = NULL;
+                header("Location: ../resources/Admin/addCar.php?error=stmtFailed");
+                exit();
+            }
             $stmt = NULL;
-            header("Location: ../resources/Admin/addCar.php?error=stmtFailed");
+
+        } 
+        
+        else {
+
+            header("Location: ../resources/Admin/addCar.php?error=carAlreadyExist");
             exit();
         }
-        $stmt = NULL;
     }
 
     protected function getCar($plateId)
     {
         $userExist = $this->carExist($plateId);
-        if ($userExist === False){
-           header("Location: ../resources/Admin/addCar.php?error=carAlreadyExists");
+        if ($userExist === False) {
+            header("Location: ../resources/Admin/addCar.php?error=carAlreadyExists");
             exit();
         }
 
-        
-            
-            // Starting Session
+
+
+        // Starting Session
         //    // $_SESSION["id"] = $userExist[0]["cust_id"];
         //     $_SESSION["email"] = $userExist[0]["email"];
         //     if($isAdmin){
         //         $_SESSION["admin_id"] = $userExist[0]["admin_id"];
-               // echo  $_SESSION["admin_id"];
-                header("Location: ../resources/Admin/car.php");
-            
-            // TODO :: Location Header
-            //header("Location: ");
-        
+        // echo  $_SESSION["admin_id"];
+        header("Location: ../resources/Admin/car.php");
+
+        // TODO :: Location Header
+        //header("Location: ");
+
         exit();
-    }*/
+    }
 }
