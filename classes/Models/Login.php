@@ -3,17 +3,15 @@
 
 class Login extends Dbh
 {
-    private function userExist($email,$isAdmin)
+    private function userExist($email, $isAdmin)
     {
         $user = "customer";
-        if($isAdmin == true)
+        if ($isAdmin == true) {
             $user = "admin";
-        
+        }
 
         $query = "SELECT *" . " FROM $user WHERE email = ?;";
-        
         $stmt = $this->connect()->prepare($query);
-        
 
         // Query Failed
         if (!$stmt->execute([$email])) {
@@ -30,28 +28,28 @@ class Login extends Dbh
         return $stmt->fetchAll();
     }
 
-    protected function getUser($email, $password,$isAdmin)
+    protected function getUser($email, $password, $isAdmin)
     {
-        $userExist = $this->userExist($email,$isAdmin);
-        if ($userExist === False){
-           header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
+        $userExist = $this->userExist($email, $isAdmin);
+        if ($userExist === False) {
+            header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
             exit();
         }
 
-        
-        
         $checkPass = password_verify($password, $userExist[0]["password"]);
-        
+
+
         if ($checkPass === False) {
-           header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
+            header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
         } else {
-          
+
             // Starting Session
-           // $_SESSION["id"] = $userExist[0]["cust_id"];
-            $_SESSION["email"] = $userExist[0]["email"];
-            if($isAdmin){
+            session_start();
+            $_SESSION["id"] = $userExist[0]["cust_id"];
+            $_SESSION["name"] = $userExist[0]["name"];
+            if ($isAdmin) {
                 $_SESSION["admin_id"] = $userExist[0]["admin_id"];
-               // echo  $_SESSION["admin_id"];
+                // echo  $_SESSION["admin_id"];
                 header("Location: ../resources/Admin/index.php");
             }
             // TODO :: Location Header

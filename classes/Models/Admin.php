@@ -7,8 +7,8 @@ class Admin extends Dbh
     private $name;
     private $profile_image;
     private $ssn;
-    
- //   private $password;
+
+    //   private $password;
 
     // public function __construct($admin_id,$email,$password, $name,$ssn,$profile_image)
     // {
@@ -18,7 +18,7 @@ class Admin extends Dbh
     //     $this->name = $name;
     //     $this->ssn = $ssn;
     //     $this->profile_image = $profile_image;
-        
+
     // }
 
     public function getCount($tbl)
@@ -28,8 +28,8 @@ class Admin extends Dbh
         $stmt->execute();
         return $stmt->fetchColumn();
 
-       // $admin_id = $_GET["admin_id"];
-        
+        // $admin_id = $_GET["admin_id"];
+
     }
 
     public function getRevenue()
@@ -39,8 +39,8 @@ class Admin extends Dbh
         $stmt->execute();
         return $stmt->fetchColumn();
 
-       // $admin_id = $_GET["admin_id"];
-        
+        // $admin_id = $_GET["admin_id"];
+
     }
 
     public function getAllReservations()
@@ -50,11 +50,11 @@ class Admin extends Dbh
         $stmt->execute();
         return $stmt->fetchAll();
 
-       // $admin_id = $_GET["admin_id"];
-        
+        // $admin_id = $_GET["admin_id"];
+
     }
 
-    
+
     public function getAllCustomers()
     {
         $query = "SELECT *" . " FROM customer;";
@@ -62,8 +62,8 @@ class Admin extends Dbh
         $stmt->execute();
         return $stmt->fetchAll();
 
-       // $admin_id = $_GET["admin_id"];
-        
+        // $admin_id = $_GET["admin_id"];
+
     }
 
     public function getAllCars()
@@ -73,18 +73,17 @@ class Admin extends Dbh
         $stmt->execute();
         return $stmt->fetchAll();
 
-       // $admin_id = $_GET["admin_id"];
-        
+        // $admin_id = $_GET["admin_id"];
+
     }
-    
-    
-   
+
+
     public function getAdminDetails($admin_id)
     {
         $query = "SELECT *" . " FROM admin WHERE admin_id = ?;";
         $stmt = $this->connect()->prepare($query);
 
-       // $admin_id = $_GET["admin_id"];
+        // $admin_id = $_GET["admin_id"];
 
         if (!$stmt->execute([$admin_id])) {
             $stmt = NULL;
@@ -93,7 +92,7 @@ class Admin extends Dbh
             header("Location: ");
             exit();
         }
-       if ($stmt->rowCount() == 1){
+        if ($stmt->rowCount() == 1) {
             $addmin_db = $stmt->fetchAll();
             $this->email = $addmin_db[0]["email"];
             $this->name = $addmin_db[0]["name"];
@@ -104,35 +103,39 @@ class Admin extends Dbh
 
             $stmt = NULL;
 
-        //    echo "p = ";
-        //    echo $this->ssn;
+            //    echo "p = ";
+            //    echo $this->ssn;
 
-          //  $_GET[$admin_id] = $this ;
+            //  $_GET[$admin_id] = $this ;
 
             return $this;
         }
     }
 
-    public function getAdminId(){
-
+    public function getAdminId()
+    {
         return $this->admin_id;
     }
-    public function getAdminSSN(){
 
+    public function getAdminSSN()
+    {
         return $this->ssn;
     }
-    public function getAdminProfileImage(){
 
+    public function getAdminProfileImage()
+    {
         return $this->profile_image;
     }
-    public function getAdminName(){
 
+    public function getAdminName()
+    {
         return $this->name;
     }
-    public function getAdminEmail(){
 
+    public function getAdminEmail()
+    {
         return $this->email;
     }
-    
+
 }
     

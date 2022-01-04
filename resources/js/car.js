@@ -1,5 +1,3 @@
-
-
 function validateCar() {
 
     // const register_form = document.getElementById("register_form");
@@ -20,19 +18,17 @@ function validateCar() {
 
     if (plate_id.trim() === "") {
         error_div.innerText = "Plate Id is Required";
-    } else if (body_style.trim() === "")
+    } else if (body_style.trim() === "") {
         error_div.innerText = "body_style is Required";
-
-    else if (year.trim().length != 4) {
+    } else if (year.trim().length !== 4) {
         error_div.innerText = "Year is too short";
-    } else if (price.trim() === "")
+    } else if (price.trim() === "") {
         error_div.innerText = "Price is Required";
-    else if (location.trim() === "")
+    } else if (location.trim() === "") {
         error_div.innerText = "Location is Required";
-    else if (car_image.trim() === "")
+    } else if (car_image.trim() === "") {
         error_div.innerText = "Car Image is Required";
-
-    else {
+    } else {
         error_div.innerText = "";
         isError = false;
     }
@@ -44,9 +40,7 @@ function validateCar() {
 
     return true;
 
-
 }
-
 
 
 function validateSpecs() {
@@ -56,38 +50,26 @@ function validateSpecs() {
 
     let transmission = document.getElementById("transmission").value;
     let body_style = document.getElementById("body_style").value;
-    let engine_capacity = document.getElementById("engine_capacity").value;
-
-    let fuel_consumption = document.getElementById("fuel_consumption").value;
-
-    let air_bag_count = document.getElementById("air_bag_count").value;
     let seat_count = document.getElementById("seat_count").value;
-
-
-
+    let engine_capacity = document.getElementById("engine_capacity").value;
+    let fuel_consumption = document.getElementById("fuel_consumption").value;
+    let air_bag_count = document.getElementById("air_bag_count").value;
 
     let isError = true;
 
-
     if (transmission.trim() === "") {
         error_div.innerText = "transmission is Required";
-    } else if (body_style.trim() === "")
+    } else if (body_style.trim() === "") {
         error_div.innerText = "body style is Required";
-    else if (seat_count.trim() === "" || seat_count < 0)
+    } else if (seat_count.trim() === "" || seat_count < 0) {
         error_div.innerText = "seat count is Required";
-
-    else if (engine_capacity.trim() === "" || engine_capacity < 0) {
+    } else if (engine_capacity.trim() === "" || engine_capacity < 0) {
         error_div.innerText = "engine capacity is too short";
-    } else if (fuel_consumption.trim() === "" || fuel_consumption < 0){
-        error_div.innerText = "fuel consumption is Required";}
-
-    else if (air_bag_count.trim() === "" || air_bag_count < 0){
-        
+    } else if (fuel_consumption.trim() === "" || fuel_consumption < 0) {
+        error_div.innerText = "fuel consumption is Required";
+    } else if (air_bag_count.trim() === "" || air_bag_count < 0) {
         error_div.innerText = "air bag count is Required";
-    }
-
-
-    else {
+    } else {
         error_div.innerText = "";
         isError = false;
     }

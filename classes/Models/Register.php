@@ -28,8 +28,7 @@ class Register extends Dbh
 
         if (!$stmt->execute([$email])) {
             $stmt = NULL;
-            // TODO :: headerLocation
-            header("Location: ");
+            header("Location: ../../register.php?error=stmtFailed");
             exit();
         }
         if ($stmt->rowCount() > 0) {
@@ -48,8 +47,7 @@ class Register extends Dbh
 
         if (!$stmt->execute([$ssn])) {
             $stmt = NULL;
-            // TODO :: headerLocation
-            header("Location: ");
+            header("Location: ../../register.php?error=stmtFailed");
             exit();
         }
         if ($stmt->rowCount() > 0) {
@@ -61,14 +59,14 @@ class Register extends Dbh
         }
     }
 
-    protected function createUser($email, $name, $password,$ssn, $address, $phone,$profileImage)
+    protected function createUser($email, $name, $password, $ssn, $address, $phone, $profileImage)
     {
         $query = "INSERT INTO" . " customer (email, name, password , ssn,address,phone,profile_image)
                     VALUES (?, ?, ?,?, ?, ?,?);";
         $stmt = $this->connect()->prepare($query);
         $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-        if (!$stmt->execute(array($email, $name, $hashedPass,$ssn, $address, $phone,$profileImage))) {
+        if (!$stmt->execute(array($email, $name, $hashedPass, $ssn, $address, $phone, $profileImage))) {
             $stmt = NULL;
             header("Location: ../resources/Login/register.php?error=stmtFailed");
             exit();

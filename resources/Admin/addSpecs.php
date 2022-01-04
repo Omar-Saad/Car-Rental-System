@@ -24,80 +24,66 @@ session_start();
 </head>
 <header>
     <?php
-
-
-    $error = "";
-    if (isset($_GET['error'])) {
-
-        if ($_GET['error'] == "carAlreadyExist")
-            $error = "This Car is Already Exist";
-     
-        else if ($_GET['error'] == "stmtFailed")
-            $error = "An Error Has Occured";
-          //  else if ($_GET['error'] == "none")
-            //$error = "An Error Has Occured";
+    if (!isset($_SESSION["admin_id"])) {
+        //UNAUTHORIZED USER
+        header("Location: ../");
     }
-
     ?>
 </header>
-
 <body>
 
 
+<div>
+    <form id="register_form" class="form_register" method="POST" action="../../includes/addSpecs.inc.php"
+          onsubmit="return validateSpecs()">
+        <h2>Add Car Specs Plate ID : <?php echo $_SESSION['plate_id']; ?></h2>
+        <div class="error" id="error"><?php include '../partials/addCar.validate.php'; ?></div>
 
-    <div>
-        <form id="register_form" class="form_register" method="POST" action="../../includes/addSpecs.inc.php" onsubmit="return validateSpecs()">
-            <h2>Add Car Specs Plate ID : <?php echo $_SESSION['plate_id'];?></h2>
-            <div class="error" id="error"><?php echo $error ?></div>
-            
-            <div>
-                <label for="transmission">Transmission</label>
-                <input type="text" id="transmission" name="transmission" placeholder="transmission">
-            </div>
+        <div>
+            <label for="transmission">Transmission</label>
+            <input type="text" id="transmission" name="transmission" placeholder="transmission">
+        </div>
 
-            <div>
-                <label for="body_style">Body Style</label>
-                <input type="text" id="body_style" name="body_style" placeholder="body style">
+        <div>
+            <label for="body_style">Body Style</label>
+            <input type="text" id="body_style" name="body_style" placeholder="body style">
 
-            </div>
-
-
-            <div>
-                <label for="seat_count">Number of Seats</label>
-                <input type="number" id="seat_count" name="seat_count" placeholder="Number of Seats">
-            </div>
-
-            <div>
-                <label for="engine_capacity">Engine Capacity</label>
-                <input type="number" id="engine_capacity" name="engine_capacity" placeholder="engine capacity">
-            </div>
-
-            <div>
-                <label for="fuel_consumption">Fuel Consumption</label>
-                <input type="number" id="fuel_consumption" name="fuel_consumption" placeholder="Fuel Consumption">
-            </div>
-            <div>
-                <label for="air_bag_count">Air Bag Count</label>
-                <input type="number" id="air_bag_count" name="air_bag_count" placeholder="Air Bag Count">
-            </div>
-
-            <div>
-                <input type="checkbox" id="ac" name="ac" value=1>
-                <label for="ac">AC ?</label>
+        </div>
 
 
-            </div>
-            <br />
+        <div>
+            <label for="seat_count">Number of Seats</label>
+            <input type="number" id="seat_count" name="seat_count" placeholder="Number of Seats">
+        </div>
 
-            <div>
-                <button type="submit" name="submit">Add Car Specs</button>
-            </div>
+        <div>
+            <label for="engine_capacity">Engine Capacity</label>
+            <input type="number" id="engine_capacity" name="engine_capacity" placeholder="engine capacity">
+        </div>
 
-        </form>
+        <div>
+            <label for="fuel_consumption">Fuel Consumption</label>
+            <input type="number" id="fuel_consumption" name="fuel_consumption" placeholder="Fuel Consumption">
+        </div>
+        <div>
+            <label for="air_bag_count">Air Bag Count</label>
+            <input type="number" id="air_bag_count" name="air_bag_count" placeholder="Air Bag Count">
+        </div>
+        <div>
+            <input type="checkbox" id="ac" name="ac" value=1>
+            <label for="ac">AC ?</label>
+        </div>
+        <br/>
 
-    </div>
+        <div>
+            <button type="submit" name="submit">Add Car Specs</button>
+        </div>
 
-   
-    <script src="../js/car.js"></script>
-    </body>
+    </form>
+
+</div>
+
+
+<script src="../js/car.js"></script>
+</body>
 </html>

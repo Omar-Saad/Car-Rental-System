@@ -6,10 +6,9 @@ global $admin;
 
 if (isset($_SESSION["admin_id"])) {
 
-
     include(dirname(__FILE__) . '/../classes/Models/Dbh.php');
-    include(dirname(__FILE__) .'/../classes/Models/Admin.php');
-    include(dirname(__FILE__) .'/../classes/Controllers/AdminController.php');
+    include(dirname(__FILE__) . '/../classes/Models/Admin.php');
+    include(dirname(__FILE__) . '/../classes/Controllers/AdminController.php');
 
     $id = $_SESSION["admin_id"];
     $controller = new AdminController();
@@ -18,11 +17,11 @@ if (isset($_SESSION["admin_id"])) {
     $customerCount = $controller->getCustomerCount();
     $CarsCount = $controller->getCarsCount();
     $revenue = $controller->getRentRevenue();
-   
+
     //echo $admin->getAdminname();
-    
+
     //$admin = $_GET[$id];
 
-   // echo $admin->ssn;
+    // echo $admin->ssn;
 
 }

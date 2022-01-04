@@ -1,26 +1,12 @@
 <?php
 include '../partials/header.php';
-
-
-$error = "";
-if (isset($_GET['error'])) {
-   
-  if($_GET['error'] == "takenEmail")
-    $error = "This Email is Already taken";  
-    else if($_GET['error'] == "takenssn")
-    $error = "This SSN is Already taken";  
-    else if($_GET['error'] == "stmtFailed")
-    $error = "An Error Has Occured"; 
-    
-}
-
 ?>
 
     <div>
         <form id="register_form" class="form_register" method="POST" action="../../includes/register.inc.php"
               onsubmit="return validateRegister()">
             <h2>REGISTER</h2>
-            <div class="error" id="error"><?php echo $error ?></div>
+            <div class="error" id="error"><?php include '../partials/register.validate.php' ?></div>
             <div>
                 <label for="name">Name</label>
                 <input type="name" id="register_name" name="name" placeholder="Name">

@@ -5,8 +5,9 @@ class LoginController extends Login
 {
     private $email;
     private $password;
+    private $isAdmin;
 
-    public function __construct($email, $password,$isAdmin)
+    public function __construct($email, $password, $isAdmin)
     {
         $this->email = $email;
         $this->password = $password;
@@ -15,6 +16,6 @@ class LoginController extends Login
 
     public function login()
     {
-        $this->getUser($this->email, $this->password,$this->isAdmin);
+        $this->getUser($this->email, $this->password, $this->isAdmin);
     }
 }

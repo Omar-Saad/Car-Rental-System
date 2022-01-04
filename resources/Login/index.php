@@ -1,24 +1,11 @@
 <?php
 include '../partials/header.php';
-
-$error = "";
-if (isset($_GET['error'])) {
-   
-  if($_GET['error'] == "wrongUsernameOrPassword")
-    $error = "Wrong Email or Password";   
-    else if($_GET['error'] == "stmtFailed")
-    $error = "An Error Has Occured"; 
-    
-}
-
-   
-
 ?>
-
     <div>
-        <form id="login_form" class="form_login" method="POST" action="../../includes/login.inc.php" onsubmit="return validateLogin()">
+        <form id="login_form" class="form_login" method="POST" action="../../includes/login.inc.php"
+              onsubmit="return validateLogin()">
             <h2>LOGIN</h2>
-            <div class="error" id="error"><?php echo $error ?></div>
+            <div class="error" id="error"><?php include '../partials/login.validate.php' ?></div>
             <div>
                 <label for="email">Email</label>
                 <input type="email" id="login_email" name="email" placeholder="Email">

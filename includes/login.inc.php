@@ -7,12 +7,9 @@
 //         $error = "Wrong Email or Password";
 
 // }
-session_start();
-
 if (isset($_POST["submit"])) {
 
     $email = $_POST['email'];
-//    $username = $_POST['username'];
     $password = $_POST['password'];
     $isAdmin = false;
 
@@ -25,6 +22,6 @@ if (isset($_POST["submit"])) {
 
     $login = new loginController($email, $password,$isAdmin);
     $login->login();
-
+    echo "sdsds";
     header("Location: ../Login/index.php?error=none");
 }

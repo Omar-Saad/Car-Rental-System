@@ -10,10 +10,9 @@ class RegisterController extends Register
     private $address;
     private $phone;
     private $profileImage;
-   
 
 
-    public function __construct($email, $name, $password,$ssn, $address, $phone,$profileImage)
+    public function __construct($email, $name, $password, $ssn, $address, $phone, $profileImage)
     {
         $this->email = $email;
         $this->name = $name;
@@ -23,24 +22,23 @@ class RegisterController extends Register
         $this->address = $address;
         $this->phone = $phone;
         $this->profileImage = $profileImage;
-        
+
 
     }
 
     public function register()
     {
-      
-        if ($this->takenEmail($this->email)==false) {
+        if ($this->takenEmail($this->email) == false) {
             header("Location: ../resources/Login/register.php?error=takenEmail");
+            exit();
         }
-          if ($this->availableSSN($this->ssn) == false) {
-            header("Location: ../../resources/index.php?error=takenssn");
+        if ($this->availableSSN($this->ssn) == false) {
+            header("Location: ../../resources/index.php?error=takenSSN");
+            exit();
         }
-        else{
-     
-        echo "\no,fsdfds";
-        $this->createUser($this->email, $this->name, $this->password,$this->ssn
-        , $this->address, $this->phone,$this->profileImage);}
+        $this->createUser($this->email, $this->name, $this->password, $this->ssn
+            , $this->address, $this->phone, $this->profileImage);
+
     }
 
     private function emptyInput()
@@ -52,7 +50,7 @@ class RegisterController extends Register
         }
     }
 
-    private function invalidname($name)
+    private function invalidUsername($name)
     {
         if (!preg_match("/^[a-zA-Z0-9]*$/", $name)) {
             $result = true;
@@ -84,11 +82,6 @@ class RegisterController extends Register
 */
     private function takenEmail($email)
     {
-       /* if (!$this->availableEmail($email)) {
-            $result = True;
-        } else {
-            $result = False;
-        }*/
         return $this->availableEmail($email);
     }
 }

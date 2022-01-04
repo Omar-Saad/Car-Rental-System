@@ -1,4 +1,5 @@
-
-        <script src="../js/scripts.js"></script>
     </body>
+    <footer>
+        <script src="../js/scripts.js"></script>
+    </footer>
 </html>
