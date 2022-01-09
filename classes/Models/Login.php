@@ -32,7 +32,7 @@ class Login extends Dbh
     {
         $userExist = $this->userExist($email, $isAdmin);
         if ($userExist === False) {
-            header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
+            header("Location: ../index.php?error=wrongUsernameOrPassword");
             exit();
         }
 
@@ -40,7 +40,7 @@ class Login extends Dbh
 
 
         if ($checkPass === False) {
-            header("Location: ../resources/Login/index.php?error=wrongUsernameOrPassword");
+            header("Location: ../index.php?error=wrongUsernameOrPassword");
         } else {
 
             // Starting Session
