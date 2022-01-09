@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "select * from car natural join specs where status=1";
+$sql = "select * from car natural join specs where status LIKE 'Active'";
 $result = mysqli_query($conn, $sql);
 $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -113,25 +113,25 @@ $conn->close();
                                 </a>
                                 <ul style=" width: 280px;">
                                     <li><i class="fa fa-tag" aria-hidden="true"></i> # <?php echo $car['plate_id']; ?></li>
-                                    <li><i class="fa fa-car" aria-hidden="true"></i> <?php echo $car['engine_capacity']; ?> cc</li>
+                                    <li ><i class="fa fa-car" aria-hidden="true"></i> <?php echo $car['engine_capacity']; ?> cc</li>
                                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo $car['year']; ?> Model</li>
                                     <li><i class="fa fa-user" aria-hidden="true"></i> <?php echo $car['seats_count']; ?> seats</li>
+                                    <li><i class="fa fa-cog" aria-hidden="true"></i> <?php echo $car['transmission']; ?></li>
                                 </ul>
                                 <div class="car-title-m">
                                     <h6><a href="car_details.php?vhid=2"> <?php echo $car['model'] ?></a></h6>
-                                    <span class="price"><?php echo $car['price']; ?> EGP</span>
+                                    <span class="price"><?php echo $car['price']; ?> EGP / Day</span>
                                 </div>
 
                                 <div class="inventory_info_m ">
                                     <p>Available in <?php echo $car['location']; ?></p>
                                 </div>
-
-
-
                             </div>
+                            
                             <div class="card-action">
                                 <div class="col-sm-12 text-center">
-                                    <form action="reserved.php" method="post">
+                                    <form action="reserved.php" method="GET">
+                                    <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $car['plate_id'] ?>"></input>
                                         <button type="submit" id="reserve" class="btn btn-primary btn-md center-block" Style="width: 200px;">Reserve and pay later</button>
                                     </form>
                                     <form action="paid.php" method="post">

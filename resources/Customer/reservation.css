@@ -1,0 +1,23 @@
+
+
+body {
+    background-color: teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+    margin-top: 60px;
+    /*box-sizing: border-box;*/
+}
+
+.out_div {
+    background-color: white;
+    border: 2px solid whitesmoke;
+    padding: 20px;
+    width: 500px;
+    border-radius: 15px;
+
+
+}

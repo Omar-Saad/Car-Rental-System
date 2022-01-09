@@ -4,10 +4,10 @@ text-align: center;
 
 
 body {
-    font-family: Arial;
-    background-color: lightcyan;
+  font-family: sans-serif;
+      background-color: lightcyan;
     overflow:auto;
-
+  
   }
   
   * {
