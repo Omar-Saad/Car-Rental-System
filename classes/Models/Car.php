@@ -118,9 +118,9 @@ class Car extends Dbh
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $this->connect()->prepare($query);
         if (!$stmt->execute(array($plate_id, $transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count))) {
-            header("Location: ../resources/Admin/addSpecs.php?error=stmtFailed");
+            header("Location: ../../resources/Admin/addSpecs.php?error=stmtFailed");
         } else {
-            header("Location: ../resources/Admin/viewAllCars.php?error=none");
+            header("Location: ../../resources/Admin/viewAllCars.php");
         }
         $stmt = NULL;
         exit();
@@ -137,9 +137,9 @@ class Car extends Dbh
 
         $stmt = $this->connect()->prepare($query);
         if (!$stmt->execute(array($transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count, $plate_id))) {
-            header("Location: ../resources/Admin/viewAllCars.php?specsModified=true");
+            header("Location: ../../resources/Admin/viewAllCars.php?specsModified=true");
         } else {
-            header("Location: ../resources/Admin/viewAllCars.php?specsModified=true");
+            header("Location:../../resources/Admin/viewAllCars.php?specsModified=true");
         }
         $stmt = NULL;
         exit();
@@ -153,7 +153,7 @@ class Car extends Dbh
         /* Query Failed*/
         if (!$stmt->execute(array($plate_id))) {
             $stmt = NULL;
-            header("Location: ../resources/Admin/modifyCarSpecs.php?error=stmtFailed");
+            header("Location: ../../resources/Admin/modifyCarSpecs.php?error=stmtFailed");
             exit();
         }
         if ($stmt->rowCount() == 0) {

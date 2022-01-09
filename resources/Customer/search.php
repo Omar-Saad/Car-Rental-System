@@ -30,7 +30,7 @@ if (!empty($_POST["year"])) {
 }
 if (!empty($_POST['transmission'])) {
     $transmission = $_POST['transmission'];
-    $where[] = 'transission = "' . $transmission . '"';
+    $where[] = 'transmission = "' . $transmission . '"';
 }
 if (!empty($_POST['body_style'])) {
     $body_style = $_POST['body_style'];

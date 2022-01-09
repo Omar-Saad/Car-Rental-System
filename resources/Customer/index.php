@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -50,7 +51,7 @@ $conn->close();
 
 <body>
     <div class="heading">
-        <h1>Welcome, customer</h1>
+        <h1>Welcome, <?php echo $_SESSION['cust_name']; ?></h1>
         <h2>Choose the car that suits you best</h2>
     </div>
 
@@ -113,7 +114,7 @@ $conn->close();
                                 </a>
                                 <ul style=" width: 280px;">
                                     <li><i class="fa fa-tag" aria-hidden="true"></i> # <?php echo $car['plate_id']; ?></li>
-                                    <li ><i class="fa fa-car" aria-hidden="true"></i> <?php echo $car['engine_capacity']; ?> cc</li>
+                                    <li><i class="fa fa-car" aria-hidden="true"></i> <?php echo $car['engine_capacity']; ?> cc</li>
                                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo $car['year']; ?> Model</li>
                                     <li><i class="fa fa-user" aria-hidden="true"></i> <?php echo $car['seats_count']; ?> seats</li>
                                     <li><i class="fa fa-cog" aria-hidden="true"></i> <?php echo $car['transmission']; ?></li>
@@ -127,16 +128,14 @@ $conn->close();
                                     <p>Available in <?php echo $car['location']; ?></p>
                                 </div>
                             </div>
-                            
+
                             <div class="card-action">
                                 <div class="col-sm-12 text-center">
                                     <form action="reserved.php" method="GET">
-                                    <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $car['plate_id'] ?>"></input>
+                                        <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $car['plate_id'] ?>"></input>
                                         <button type="submit" id="reserve" class="btn btn-primary btn-md center-block" Style="width: 200px;">Reserve and pay later</button>
                                     </form>
-                                    <form action="paid.php" method="post">
-                                        <button type="submit" id="pay" class="btn btn-danger btn-md center-block" Style="width: 100px;">Pay now</button>
-                                    </form>
+
                                 </div>
                             </div>
                         </div>

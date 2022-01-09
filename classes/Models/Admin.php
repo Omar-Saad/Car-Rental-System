@@ -34,10 +34,14 @@ class Admin extends Dbh
 
     public function getRevenue()
     {
-        $query = "SELECT SUM(amount_paid)" . " FROM reservation;";
+        $query = "SELECT *" . " FROM reservation;";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
-        return $stmt->fetchColumn();
+        $rev = $stmt->fetchColumn();
+        if($rev ==null)
+        return 0;
+        else
+        return $rev;
 
         // $admin_id = $_GET["admin_id"];
 
@@ -104,6 +108,7 @@ class Admin extends Dbh
             $this->admin_id = $admin_id;
 
             $stmt = NULL;
+            
 
             //    echo "p = ";
             //    echo $this->ssn;

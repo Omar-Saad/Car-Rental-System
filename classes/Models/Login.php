@@ -51,8 +51,8 @@ class Login extends Dbh
                 // echo  $_SESSION["admin_id"];
                 header("Location: ../resources/Admin/index.php");
             }else{
-                $_SESSION["id"] = $userExist[0]["cust_id"];
-                $_SESSION["name"] = $userExist[0]["name"];
+                $_SESSION["cust_id"] = $userExist[0]["cust_id"];
+                $_SESSION["cust_name"] = $userExist[0]["name"];
                 header("Location: ../resources/Customer/index.php");
             }
         }
