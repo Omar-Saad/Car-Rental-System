@@ -29,11 +29,11 @@ class RegisterController extends Register
     public function register()
     {
         if ($this->takenEmail($this->email) == false) {
-            header("Location: ../resources/Login/register.php?error=takenEmail");
+            header("Location: ../register.php?error=takenEmail");
             exit();
         }
         if ($this->availableSSN($this->ssn) == false) {
-            header("Location: ../../resources/index.php?error=takenSSN");
+            header("Location: ../index.php?error=takenSSN");
             exit();
         }
         $this->createUser($this->email, $this->name, $this->password, $this->ssn

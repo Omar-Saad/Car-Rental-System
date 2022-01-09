@@ -16,13 +16,13 @@ class Login extends Dbh
         // Query Failed
         if (!$stmt->execute([$email])) {
             $stmt = NULL;
-            header("Location: ../../index.php?error=stmtFailed");
+            header("Location: ../index.php?error=stmtFailed");
             exit();
         }
         // Doesn't Exist
         if ($stmt->rowCount() == 0) {
             $stmt = NULL;
-            header("Location: ../../index.php?error=wrongUsernameOrPassword");
+            header("Location: ../index.php?error=wrongUsernameOrPassword");
             return False;
         }
         return $stmt->fetchAll();
