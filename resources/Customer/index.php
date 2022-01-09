@@ -50,12 +50,19 @@ $conn->close();
 </head>
 
 <body>
+
+<div class="topnav">
+        <a class="active" href="#services">Home</a>
+        <a href="../../includes/logout.inc.php">Log out</a>
+    </div>
+
+
     <div class="heading">
         <h1>Welcome, <?php echo $_SESSION['cust_name']; ?></h1>
         <h2>Choose the car that suits you best</h2>
     </div>
 
-    <form action="search.php" method="post">
+    <form action="search.php" method="post" onsubmit="return validateSearch()">
         <table class="table">
             <tbody>
                 <tr>
@@ -144,6 +151,26 @@ $conn->close();
             </div>
         </div>
     </section>
+
+    <script>
+        function validateSearch() {
+            plate_id = document.getElementById("plate_id").value;
+            model = document.getElementById("model").value;
+            price = document.getElementById("price").value;
+            year = document.getElementById("year").value;
+            transmission = document.getElementById("transmission").value;
+            body_style = document.getElementById("body_style").value;
+            seats_count = document.getElementById("seats_count").value;
+            engine_capacity = document.getElementById("engine_capacity").value;
+            res_date = document.getElementById("res_date").value;
+
+            if (plate_id == '' && model == '' && price == '' && year == '' && transmission == '' && body_style == '' && seats_count == '' && engine_capacity == '' && !Date.parse(res_date)) {
+                alert('Search bars empty. Please type in any value.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>

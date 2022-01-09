@@ -29,7 +29,7 @@ include "../../includes/Admin/admin.inc.php";
 
     if (!isset($_SESSION["admin_id"])) {
         //UNAUTHORIZED USER
-        header("Location: ../Login?error=unAuth");
+        header("Location: ../../index.php?error=unAuth");
         session_destroy();
     }
     ?>
@@ -83,9 +83,8 @@ include "../../includes/Admin/admin.inc.php";
 
                 <!-- counter -->
                 <div class="col-md-3 col-sm-6 text-center counter-section wow fadeInUp animated" data-wow-duration="1200ms" style="visibility: visible; animation-duration: 1200ms; animation-name: fadeInUp;"><i class="fas fa-money-check-alt medium-icon"></i> <span class="timer counter alt-font appear" data-to="<?php echo $revenue; ?>" data-speed="7000"><?php echo $revenue; ?></span>
-                    <a href="Revenue.php" style="color: whitesmoke;">
-                        <span class="counter-title">Revenue</span>
-                    </a>
+
+                    <span class="counter-title">Revenue</span>
                 </div> <!-- end counter -->
             </div>
         </div>
