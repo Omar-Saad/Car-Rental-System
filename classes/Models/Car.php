@@ -92,9 +92,9 @@ class Car extends Dbh
 
     protected function getCar($plateId)
     {
-        $userExist = $this->carExist($plateId);
-        if ($userExist === False) {
-            header("Location: ../resources/Admin/addCar.php?error=carAlreadyExists");
+        $carExist = $this->carExist($plateId);
+        if ($carExist === False) {
+            header("Location: ../../resources/Admin/addCar.php?error=carAlreadyExists");
             exit();
         }
 
@@ -104,7 +104,7 @@ class Car extends Dbh
         //     if($isAdmin){
         //         $_SESSION["admin_id"] = $userExist[0]["admin_id"];
         // echo  $_SESSION["admin_id"];
-        header("Location: ../resources/Admin/car.php");
+        header("Location: ../../resources/Admin/car.php");
 
         // TODO :: Location Header
         //header("Location: ");
@@ -120,7 +120,9 @@ class Car extends Dbh
         if (!$stmt->execute(array($plate_id, $transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count))) {
             header("Location: ../../resources/Admin/addSpecs.php?error=stmtFailed");
         } else {
-            header("Location: ../../resources/Admin/viewAllCars.php");
+
+            header("Location: ../../resources/Admin/viewAllCars.php?error=none");
+
         }
         $stmt = NULL;
         exit();
@@ -129,19 +131,23 @@ class Car extends Dbh
 
     protected function editSpec($plate_id, $transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count)
     {
+        $specs = $this->getSpecs($plate_id);
+        if ($specs) {
+            $query = "UPDATE  specs "
+                . "SET  transmission = ?, body_style=?, AC=?, seats_count=?, engine_capacity=?,fuel_consumption=?, air_bags_count=? "
+                . "WHERE plate_id = ?;";
 
-        $query = "
-        UPDATE  specs 
-        SET  transmission = ?, body_style=?, AC=?, seats_count=?, engine_capacity=?,fuel_consumption=?, air_bags_count=?
-         WHERE plate_id = ?;";
-
-        $stmt = $this->connect()->prepare($query);
-        if (!$stmt->execute(array($transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count, $plate_id))) {
-            header("Location: ../../resources/Admin/viewAllCars.php?specsModified=true");
+            $stmt = $this->connect()->prepare($query);
+            if (!$stmt->execute(array($transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count, $plate_id))) {
+                header("Location: ../../resources/Admin/viewAllCars.php?specsModified=failed");
+            } else {
+                header("Location: ../../resources/Admin/viewAllCars.php?specsModified=true");
+            }
+            $stmt = NULL;
         } else {
-            header("Location:../../resources/Admin/viewAllCars.php?specsModified=true");
+            $this->insertSpec($plate_id, $transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count);
+
         }
-        $stmt = NULL;
         exit();
     }
 
