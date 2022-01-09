@@ -120,7 +120,9 @@ class Car extends Dbh
         if (!$stmt->execute(array($plate_id, $transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count))) {
             header("Location: ../../resources/Admin/addSpecs.php?error=stmtFailed");
         } else {
+
             header("Location: ../../resources/Admin/viewAllCars.php?error=none");
+
         }
         $stmt = NULL;
         exit();
@@ -144,6 +146,7 @@ class Car extends Dbh
             $stmt = NULL;
         } else {
             $this->insertSpec($plate_id, $transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count);
+
         }
         exit();
     }
