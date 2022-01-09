@@ -22,6 +22,6 @@ if (isset($_POST["submit"])) {
 
     $login = new loginController($email, $password,$isAdmin);
     $login->login();
-    echo "sdsds";
+   // echo "sdsds";
     header("Location: ../Login/index.php?error=none");
 }

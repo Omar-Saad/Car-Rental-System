@@ -80,6 +80,8 @@ class Admin extends Dbh
 
     public function getAdminDetails($admin_id)
     {
+        
+        
         $query = "SELECT *" . " FROM admin WHERE admin_id = ?;";
         $stmt = $this->connect()->prepare($query);
 
@@ -87,7 +89,7 @@ class Admin extends Dbh
 
         if (!$stmt->execute([$admin_id])) {
             $stmt = NULL;
-            echo "x ";
+           // echo "x ";
             // TODO :: headerLocation
             header("Location: ");
             exit();
@@ -110,7 +112,60 @@ class Admin extends Dbh
 
             return $this;
         }
+
+        else {
+
+            header("Location: ../Login/index.php?error=unAuth");
+            session_destroy();
+        }
+
+        
     }
+
+    public function removeCustomer($custId){
+
+        
+            $query = "DELETE FROM customer WHERE cust_id = ?";
+            $stmt = $this->connect()->prepare($query);
+
+            if (!$stmt->execute(array($custId))) {
+                $stmt = NULL;
+                header("Location: ../resources/Admin/viewAllCustomers.php?error=stmtFailed");
+                exit();
+            }
+            else{
+            $stmt = NULL;
+            header("Location: ../resources/Admin/viewAllCustomers.php");
+            exit();
+            }
+        
+        
+        
+        exit();
+    }
+
+
+    public function removeReservation($resId){
+
+        
+        $query = "DELETE FROM reservation WHERE res_id = ?";
+        $stmt = $this->connect()->prepare($query);
+
+        if (!$stmt->execute(array($resId))) {
+            $stmt = NULL;
+            header("Location: ../resources/Admin/viewAllReservation.php?error=stmtFailed");
+            exit();
+        }
+        else{
+        $stmt = NULL;
+        header("Location: ../resources/Admin/viewAllReservation.php");
+        exit();
+        }
+    
+    
+    
+    exit();
+}
 
     public function getAdminId()
     {

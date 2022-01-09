@@ -3,11 +3,11 @@ DATABASE car_rental_system;
 
 CREATE TABLE car
 (
-    plate_id   int UNIQUE,
+    plate_id   VARCHAR(12) UNIQUE,
     model      VARCHAR(512) NOT NULL,
     price      float        NOT NULL,
     `year` YEAR NOT NULL,
-    `status`   BIT          NOT NULL,
+    `status`   VARCHAR(512)          NOT NULL,
     image_link TEXT,
     location   VARCHAR(512),
     PRIMARY KEY (plate_id)
@@ -36,7 +36,7 @@ CREATE TABLE customer
     address       VARCHAR(512) NOT NULL,
     phone         VARCHAR(512) NOT NULL,
     profile_image TEXT,
-    email         VARCHAR(512) NOT NULL,
+    email         VARCHAR(512) UNIQUE NOT NULL,
     `password`    VARCHAR(512) NOT NULL,
 
     PRIMARY KEY (cust_id)
@@ -49,7 +49,7 @@ CREATE TABLE admin
     ssn           int          NOT NULL UNIQUE,
     name          VARCHAR(512) NOT NULL,
     profile_image TEXT,
-    email         VARCHAR(512) NOT NULL,
+    email         VARCHAR(512) UNIQUE NOT NULL,
     `password`    VARCHAR(512) NOT NULL,
 
     PRIMARY KEY (admin_id)

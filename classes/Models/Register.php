@@ -72,5 +72,8 @@ class Register extends Dbh
             exit();
         }
         $stmt = NULL;
+
+        header("Location: ../resources/Customer/index.php");
+
     }
 }

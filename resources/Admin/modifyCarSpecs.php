@@ -1,3 +1,7 @@
+<?php
+    include '../../includes/modifyCarSpecs.inc.php';
+ 
+?>
 
 <?php
 session_start();
@@ -25,49 +29,50 @@ session_start();
 
 
 <div>
-    <form id="register_form" class="form_register" method="POST" action="../../includes/addSpecs.inc.php"
+    <form id="register_form" class="form_register" method="POST" action="../../includes/modifyCarSpecs.inc.php"
           onsubmit="return validateSpecs()">
-        <h2>Add Car Specs Plate ID : <?php echo $_SESSION['plate_id']; ?></h2>
+        <h2>Modify Car Specs of Plate ID : <?php echo $_GET['plate_id']; ?></h2>
         <div class="error" id="error"><?php include '../partials/addCar.validate.php'; ?></div>
+        <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $plateId; ?>">
 
         <div>
             <label for="transmission">Transmission</label>
-            <input type="text" id="transmission" name="transmission" placeholder="transmission">
+            <input type="text" id="transmission" name="transmission" value="<?php echo $transmission; ?>">
         </div>
 
         <div>
             <label for="body_style">Body Style</label>
-            <input type="text" id="body_style" name="body_style" placeholder="body style">
+            <input type="text" id="body_style" name="body_style" value="<?php echo $body_style; ?>">
 
         </div>
 
 
         <div>
             <label for="seat_count">Number of Seats</label>
-            <input type="number" id="seat_count" name="seat_count" placeholder="Number of Seats">
+            <input type="number" id="seats_count" name="seats_count"value="<?php echo $seats_count; ?>">
         </div>
 
         <div>
             <label for="engine_capacity">Engine Capacity</label>
-            <input type="number" id="engine_capacity" name="engine_capacity" placeholder="engine capacity">
+            <input type="number" id="engine_capacity" name="engine_capacity" value="<?php echo $engine_capacity; ?>">
         </div>
 
         <div>
             <label for="fuel_consumption">Fuel Consumption</label>
-            <input type="number" id="fuel_consumption" name="fuel_consumption" placeholder="Fuel Consumption">
+            <input type="number" id="fuel_consumption" name="fuel_consumption"value="<?php echo $fuel_consumption; ?>">
         </div>
         <div>
             <label for="air_bag_count">Air Bag Count</label>
-            <input type="number" id="air_bag_count" name="air_bag_count" placeholder="Air Bag Count">
+            <input type="number" id="air_bags_count" name="air_bags_count"value="<?php echo $air_bags_count; ?>">
         </div>
         <div>
-            <input type="checkbox" id="ac" name="ac" value=1>
+            <input type="checkbox" id="AC" name="AC" value="<?php echo $AC; ?>" checked = "<?php echo $AC; ?>">
             <label for="ac">AC ?</label>
         </div>
         <br/>
 
         <div>
-            <button type="submit" name="submit">Add Car Specs</button>
+            <button type="submit" name="submit">Modify Car Specs</button>
         </div>
 
     </form>

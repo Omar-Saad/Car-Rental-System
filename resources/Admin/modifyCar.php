@@ -1,13 +1,3 @@
-<?php
-
-//TODO : ADD CAR PAGE :
-//1 - ADD CAR FORM
-//2-ADD CAR SPECS
-//3 - INSERT BOTH IN DATABASE
-
-//THIS PAGE CAN BE FOR ADD NEW CAR OR MODIFY EXISTING CAR (using GET) 
-//EX: _GET['action'] = 'add' => ADD CAR / _GET['action'] = 'modify' => modify CAR 
-?>
 
 <?php
 session_start();
@@ -19,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Add Car</title>
+    <title>Admin | Modify Car</title>
     <link rel="stylesheet" href="../css/login_style.css">
 </head>
 <body>
@@ -28,19 +18,18 @@ session_start();
     if (!isset($_SESSION["admin_id"])) {
         //UNAUTHORIZED USER
         header("Location: ../Login?error=unAuth");
-        session_destroy();
-    }
+        session_destroy();    }
     ?>
 </header>
 
 <div>
-    <form id="register_form" class="form_register" method="POST" action="../../includes/addCar.inc.php"
+    <form id="register_form" class="form_register" method="POST" action="../../includes/modifyCar.inc.php"
           onsubmit="return validateCar()">
-        <h2>Add Car</h2>
-        <div class="error" id="error"><?php include '../partials/addCar.validate.php'; ?></div>
+        <h2>Modify Car</h2>
+        <div class="error" id="error"><?php include '../partials/modifyCar.validate.php'; ?></div>
         <div>
-            <label for="plate_id">Plate ID</label>
-            <input type="text" id="plate_id" name="plate_id" placeholder="Plate ID">
+            <label for="plate_id" >Plate ID</label>
+            <input type="text" id="plate_id" name="plate_id" value="<?php if(isset($_GET['plate_id'])) echo $_GET['plate_id'];?>">
         </div>
 
         <div>
@@ -78,7 +67,7 @@ session_start();
         <br/>
 
         <div>
-            <button type="submit" name="submit">Add Car</button>
+            <button type="submit" name="submit">Modify Car</button>
         </div>
 
 

@@ -18,8 +18,11 @@ if (isset($_SESSION["admin_id"])) {
     $CarsCount = $controller->getCarsCount();
     $revenue = $controller->getRentRevenue();
 
+       // echo $admin->getAdminName()==null;
+    if($admin->getAdminName()==null)
+    $admin = $controller->getAdmin($id);
+   // echo "sdsdd";
     //echo $admin->getAdminname();
-
     //$admin = $_GET[$id];
 
     // echo $admin->ssn;

@@ -7,7 +7,8 @@ session_start();
 
 if (!isset($_SESSION["admin_id"])) {
     //UNAUTHORIZED USER
-    header("Location: ../");
+    header("Location: ../Login?error=unAuth");
+    session_destroy();
 }
 
 
@@ -36,6 +37,9 @@ $res = $controller->getAllReservations();
     <link rel="stylesheet"
           href="https://rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css"/>
 
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
 
     <title>Admin | Reservations</title>
     <!-- <link rel="stylesheet" href="../css/admin_style.css">-->
@@ -47,6 +51,10 @@ $res = $controller->getAllReservations();
 <body>
 
 <div class="container">
+<a style="display: inline ;" href="index.php" style="color: whitesmoke;">
+<p style="display: inline; color: primary;">Home</p>
+<i class="fas fa-home" style="color: primary;"></i>
+        </a>
     <h1 style="text-align: center;">Reservations</h1>
 
 
@@ -78,6 +86,7 @@ $res = $controller->getAllReservations();
             <th data-field="return_date" data-filter-control="input" data-sortable="true">Return Date</th>
             <th data-field="location<" data-filter-control="input" data-sortable="true">Location</th>
             <th data-field="amount_paid" data-filter-control="input" data-sortable="true">Amount Paid</th>
+            <th scope="col">Delete</th>
 
 
         </tr>
@@ -95,7 +104,12 @@ $res = $controller->getAllReservations();
                 '<td>' . $res[$i]['return_date'] . '</td>' .
                 '<td>' . $res[$i]['location'] . '</td>' .
                 '<td>' . $res[$i]['amount_paid'] . '</td>' .
-
+                '<td>' .
+                '<form method="POST" action="../../includes/deleteReservation.inc.php">
+                <input type="hidden" id="cust_id" name="cust_id" value="'.$res[$i]['res_id'].'">
+    <button type="submit" id="submit" name="submit"class="btn btn-danger">Delete</button>
+    </form>'
+                 . '</td>' .
                 '</tr>';
             echo $s;
 
@@ -106,9 +120,22 @@ $res = $controller->getAllReservations();
     </table>
 </div>
 
+<script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/editable/bootstrap-table-editable.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/export/bootstrap-table-export.js"></script>
+
+    <script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+
+
 
 <script>
-    //exporte les données sélectionnées
     var $table = $('#table');
     $(function () {
         $('#toolbar').find('select').change(function () {
@@ -126,18 +153,7 @@ $res = $controller->getAllReservations();
     });
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/editable/bootstrap-table-editable.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/export/bootstrap-table-export.js"></script>
-
-<script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
 
 
 </body>

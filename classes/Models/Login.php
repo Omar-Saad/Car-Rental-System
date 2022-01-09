@@ -52,8 +52,8 @@ class Login extends Dbh
                 // echo  $_SESSION["admin_id"];
                 header("Location: ../resources/Admin/index.php");
             }
-            // TODO :: Location Header
-            //header("Location: ");
+          
+            header("Location: ../resources/Customer/index.php");
         }
         exit();
     }

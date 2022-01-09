@@ -8,8 +8,8 @@ if (isset($_POST["submit"])) {
     $fuel_consumption = $_POST["fuel_consumption"];
     $air_bags_count = $_POST["air_bag_count"];
 
-    if (isset($_POST["ac"]))
-        $ac = $_POST["ac"];
+    if (isset($_POST["AC"]))
+        $ac = $_POST["AC"];
     else
         $ac = 0;
 

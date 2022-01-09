@@ -8,7 +8,8 @@ session_start();
 if (!isset($_SESSION["admin_id"])) 
 {
     //UNAUTHORIZED USER
-    header("Location: ../");
+    header("Location: ../Login?error=unAuth");
+    session_destroy();
 }
 
 
@@ -37,6 +38,9 @@ $customers = $controller->getAllCustomers();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
     <link rel="stylesheet" href="https://rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
 
 
 
@@ -50,6 +54,10 @@ $customers = $controller->getAllCustomers();
 <body >
     
     <div class="container">
+    <a style="display: inline ;" href="index.php" style="color: whitesmoke;">
+<p style="display: inline; color: primary;">Home</p>
+<i class="fas fa-home" style="color: primary;"></i>
+        </a>
 <h1 style="text-align: center;">Customers</h1>
 
 
@@ -83,6 +91,7 @@ $customers = $controller->getAllCustomers();
             <th data-field="address" data-filter-control="input" data-sortable="false">Address</th>
 
 			<th data-field="profile_image" data-sortable="false">Profile Image</th>
+            <th scope="col">Delete</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -97,7 +106,14 @@ $customers = $controller->getAllCustomers();
 			'<td>'.$customers[$i]['ssn'].'</td>'.
 			'<td>'.$customers[$i]['phone'].'</td>'.
 			'<td>'.$customers[$i]['address'].'</td>'.
-			'<td>'.$customers[$i]['profile_image'].'</td>'. 
+			'<td>'.$customers[$i]['profile_image'].'</td>'.
+            '<td>' .
+                       '<form method="POST" action="../../includes/deleteCustomer.inc.php">
+                       <input type="hidden" id="cust_id" name="cust_id" value="'.$customers[$i]['cust_id'].'">
+           <button type="submit" id="submit" name="submit"class="btn btn-danger">Delete</button>
+           </form>'
+                        . '</td>' .
+
 	        '</tr>';
             echo $s;
 
@@ -109,8 +125,23 @@ $customers = $controller->getAllCustomers();
 </div>
 
 
+
+<script language="JavaScript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/editable/bootstrap-table-editable.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/export/bootstrap-table-export.js"></script>
+
+    <script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+
+
+    
 <script >
-    //exporte les données sélectionnées
 var $table = $('#table');
     $(function () {
         $('#toolbar').find('select').change(function () {
@@ -128,18 +159,6 @@ var $table = $('#table');
 	});
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/editable/bootstrap-table-editable.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/export/bootstrap-table-export.js"></script>
-
-<script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
 
 
 </body>
