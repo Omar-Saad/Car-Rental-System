@@ -105,8 +105,8 @@ $res = $controller->getAllReservations();
                 '<td>' . $res[$i]['location'] . '</td>' .
                 '<td>' . $res[$i]['amount_paid'] . '</td>' .
                 '<td>' .
-                '<form method="POST" action="../../includes/deleteReservation.inc.php">
-                <input type="hidden" id="cust_id" name="cust_id" value="'.$res[$i]['res_id'].'">
+                '<form method="POST" action="../../includes/Admin/deleteReservation.inc.php">
+                <input type="hidden" id="cust_id" name="cust_id" value="' .$res[$i]['res_id'].'">
     <button type="submit" id="submit" name="submit"class="btn btn-danger">Delete</button>
     </form>'
                  . '</td>' .

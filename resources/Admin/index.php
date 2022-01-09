@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "../../includes/admin.inc.php";
+include "../../includes/Admin/admin.inc.php";
 
 //echo $reservationCount;
 ?>
@@ -86,14 +86,16 @@ include "../../includes/admin.inc.php";
 
                 <!-- counter -->
                 <div class="col-md-3 col-sm-6 text-center counter-section wow fadeInUp animated" data-wow-duration="1200ms" style="visibility: visible; animation-duration: 1200ms; animation-name: fadeInUp;"><i class="fas fa-money-check-alt medium-icon"></i> <span class="timer counter alt-font appear" data-to="<?php echo $revenue; ?>" data-speed="7000"><?php echo $revenue; ?></span>
-                    <span class="counter-title">Revenue</span>
+                    <a href="Revenue.php" style="color: whitesmoke;">
+                        <span class="counter-title">Revenue</span>
+                    </a>
                 </div> <!-- end counter -->
             </div>
         </div>
     </section>
 
 
-    <script src="../js/admin.js"></script>
+    <script src="../../js/admin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>

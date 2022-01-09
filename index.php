@@ -1,11 +1,11 @@
 <?php
-include '../partials/header.php';
+include 'resources/partials/header.php';
 ?>
     <div>
-        <form id="login_form" class="form_login" method="POST" action="../../includes/login.inc.php"
+        <form id="login_form" class="form_login" method="POST" action="includes/login.inc.php"
               onsubmit="return validateLogin()">
             <h2>LOGIN</h2>
-            <div class="error" id="error"><?php include '../partials/login.validate.php' ?></div>
+            <div class="error" id="error"><?php include 'resources/partials/login.validate.php' ?></div>
             <div>
                 <label for="email">Email</label>
                 <input type="email" id="login_email" name="email" placeholder="Email">
@@ -34,5 +34,5 @@ include '../partials/header.php';
     </div>
 
 <?php
-include '../partials/footer.php';
+include 'resources/partials/footer.php';
 ?>

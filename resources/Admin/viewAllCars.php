@@ -1,7 +1,7 @@
 <?php
 
 
- include '../partials/addCar.validate.php';
+ include '../partials/Admin/addCar.validate.php';
 session_start();
 
 //TODO : ADD CAR MODIFY/DELETE BUTTON
@@ -135,8 +135,8 @@ $cars = $controller->getAllCars();
                         . '</td>' .
 
                         '<td>' .
-                       '<form method="POST" action="../../includes/deleteCar.inc.php">
-                       <input type="hidden" id="plate_id" name="plate_id" value="'.$cars[$i]['plate_id'].'">
+                        '<form method="POST" action="../../includes/Admin/deleteCar.inc.php">
+                       <input type="hidden" id="plate_id" name="plate_id" value="' .$cars[$i]['plate_id'].'">
            <button type="submit" id="submit" name="submit"class="btn btn-danger">Delete</button>
            </form>'
                         . '</td>' .

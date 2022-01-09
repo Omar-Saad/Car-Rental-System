@@ -25,10 +25,10 @@ session_start();
 
 
 <div>
-    <form id="register_form" class="form_register" method="POST" action="../../includes/addSpecs.inc.php"
+    <form id="register_form" class="form_register" method="POST" action="../../includes/Admin/addSpecs.inc.php"
           onsubmit="return validateSpecs()">
         <h2>Add Car Specs Plate ID : <?php echo $_SESSION['plate_id']; ?></h2>
-        <div class="error" id="error"><?php include '../partials/addCar.validate.php'; ?></div>
+        <div class="error" id="error"><?php include '../partials/Admin/addCar.validate.php'; ?></div>
 
         <div>
             <label for="transmission">Transmission</label>
@@ -75,6 +75,6 @@ session_start();
 </div>
 
 
-<script src="../js/car.js"></script>
+<script src="../../js/car.js"></script>
 </body>
 </html>

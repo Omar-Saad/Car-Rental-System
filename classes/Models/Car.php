@@ -45,7 +45,7 @@ class Car extends Dbh
         }
     }
 
-    
+
     protected function editCar($plateId, $model, $price, $year, $status, $car_image, $location)
     {
         if ($this->carExist($plateId)) {
@@ -55,7 +55,7 @@ class Car extends Dbh
                     WHERE plate_id = ?;";
             $stmt = $this->connect()->prepare($query);
 
-            if (!$stmt->execute(array($model, $price, $year, $status, $car_image, $location,$plateId))) {
+            if (!$stmt->execute(array($model, $price, $year, $status, $car_image, $location, $plateId))) {
                 $stmt = NULL;
                 header("Location: ../resources/Admin/modifyCar.php?error=stmtFailed");
                 exit();
@@ -78,21 +78,14 @@ class Car extends Dbh
 
             if (!$stmt->execute(array($plateId))) {
                 $stmt = NULL;
-                header("Location: ../resources/Admin/viewAllCars.php?error=stmtFailed");
-                exit();
+                header("Location: ../../resources/Admin/viewAllCars.php?error=stmtFailed");
+            } else {
+                $stmt = NULL;
+                header("Location: ../../resources/Admin/viewAllCars.php");
             }
-            else{
-            $stmt = NULL;
-            header("Location: ../resources/Admin/viewAllCars.php");
             exit();
-            }
-
-        }
-        
-        else {
-
-            header("Location: ../resources/Admin/viewAllCars.php?error=carNotExist");
-            exit();
+        } else {
+            header("Location: ../../resources/Admin/viewAllCars.php?error=carNotExist");
         }
         exit();
     }
@@ -136,17 +129,17 @@ class Car extends Dbh
 
     protected function editSpec($plate_id, $transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count)
     {
-       
+
         $query = "
         UPDATE  specs 
         SET  transmission = ?, body_style=?, AC=?, seats_count=?, engine_capacity=?,fuel_consumption=?, air_bags_count=?
          WHERE plate_id = ?;";
 
         $stmt = $this->connect()->prepare($query);
-        if (!$stmt->execute(array($transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count,$plate_id))) {
+        if (!$stmt->execute(array($transmission, $body_style, $ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count, $plate_id))) {
             header("Location: ../resources/Admin/viewAllCars.php?specsModified=true");
         } else {
-           header("Location: ../resources/Admin/viewAllCars.php?specsModified=true");
+            header("Location: ../resources/Admin/viewAllCars.php?specsModified=true");
         }
         $stmt = NULL;
         exit();
@@ -154,16 +147,21 @@ class Car extends Dbh
 
     protected function getSpecs($plate_id)
     {
-        $query = "SELECT * FROM specs 
+        $query = "SELECT *" . " FROM specs 
                   WHERE plate_id =?;";
         $stmt = $this->connect()->prepare($query);
+        /* Query Failed*/
         if (!$stmt->execute(array($plate_id))) {
+            $stmt = NULL;
             header("Location: ../resources/Admin/modifyCarSpecs.php?error=stmtFailed");
+            exit();
+        }
+        if ($stmt->rowCount() == 0) {
+            $stmt = NULL;
+            return False;
         } else {
             return $stmt->fetchAll();
-           // header("Location: ../resources/Admin/modifyCarSpecs.php?error=none");
         }
-        $stmt = NULL;
-        exit();
+        // header("Location: ../resources/Admin/modifyCarSpecs.php?error=none");
     }
 }

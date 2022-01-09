@@ -1,12 +1,12 @@
 <?php
-include '../partials/header.php';
+include 'resources/partials/header.php';
 ?>
 
     <div>
-        <form id="register_form" class="form_register" method="POST" action="../../includes/register.inc.php"
+        <form id="register_form" class="form_register" method="POST" action="includes/register.inc.php"
               onsubmit="return validateRegister()">
             <h2>REGISTER</h2>
-            <div class="error" id="error"><?php include '../partials/register.validate.php' ?></div>
+            <div class="error" id="error"><?php include 'resources/partials/register.validate.php' ?></div>
             <div>
                 <label for="name">Name</label>
                 <input type="name" id="register_name" name="name" placeholder="Name">
@@ -60,5 +60,5 @@ include '../partials/header.php';
     </div>
 
 <?php
-include '../partials/footer.php';
+include 'resources/partials/footer.php';
 ?>

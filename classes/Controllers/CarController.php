@@ -11,7 +11,7 @@ class CarController extends Car
     private $car_image;
     private $location;
 
-   
+
     public function __construct($plateId, $model, $price, $year, $status, $car_image, $location)
     {
         $this->plateId = $plateId;
@@ -24,7 +24,6 @@ class CarController extends Car
 
     }
 
-    
 
     public function addCar()
     {
@@ -53,6 +52,10 @@ class CarController extends Car
 
     public static function getCarSpecs($plate_id)
     {
-        return (new Car)->getSpecs($plate_id)[0];
+        if ((new Car)->getSpecs($plate_id)) {
+            return (new Car)->getSpecs($plate_id)[0];
+        } else
+            return false;
+
     }
 }

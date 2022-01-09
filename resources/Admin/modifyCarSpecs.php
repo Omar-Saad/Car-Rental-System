@@ -1,5 +1,5 @@
 <?php
-    include '../../includes/modifyCarSpecs.inc.php';
+    include '../../includes/Admin/modifyCarSpecs.inc.php';
  
 ?>
 
@@ -29,10 +29,10 @@ session_start();
 
 
 <div>
-    <form id="register_form" class="form_register" method="POST" action="../../includes/modifyCarSpecs.inc.php"
+    <form id="register_form" class="form_register" method="POST" action="../../includes/Admin/modifyCarSpecs.inc.php"
           onsubmit="return validateSpecs()">
         <h2>Modify Car Specs of Plate ID : <?php echo $_GET['plate_id']; ?></h2>
-        <div class="error" id="error"><?php include '../partials/addCar.validate.php'; ?></div>
+        <div class="error" id="error"><?php include '../partials/Admin/addCar.validate.php'; ?></div>
         <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $plateId; ?>">
 
         <div>
@@ -80,6 +80,6 @@ session_start();
 </div>
 
 
-<script src="../js/car.js"></script>
+<script src="../../js/car.js"></script>
 </body>
 </html>

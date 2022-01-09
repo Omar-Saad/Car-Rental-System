@@ -23,10 +23,10 @@ session_start();
 </header>
 
 <div>
-    <form id="register_form" class="form_register" method="POST" action="../../includes/modifyCar.inc.php"
+    <form id="register_form" class="form_register" method="POST" action="../../includes/Admin/modifyCar.inc.php"
           onsubmit="return validateCar()">
         <h2>Modify Car</h2>
-        <div class="error" id="error"><?php include '../partials/modifyCar.validate.php'; ?></div>
+        <div class="error" id="error"><?php include '../partials/Admin/modifyCar.validate.php'; ?></div>
         <div>
             <label for="plate_id" >Plate ID</label>
             <input type="text" id="plate_id" name="plate_id" value="<?php if(isset($_GET['plate_id'])) echo $_GET['plate_id'];?>">
@@ -76,7 +76,7 @@ session_start();
 </div>
 
 
-<script src="../js/car.js"></script>
+<script src="../../js/car.js"></script>
 
 </body>
 </html>

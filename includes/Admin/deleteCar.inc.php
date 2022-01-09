@@ -13,12 +13,11 @@ if (isset($_POST["submit"])) {
     $plateId = $_POST["plate_id"];
 
 
-    include '../classes/Models/Dbh.php';
-    include '../classes/Models/Car.php';
-    include '../classes/Controllers/CarController.php';
+    include '../../classes/Models/Dbh.php';
+    include '../../classes/Models/Car.php';
+    include '../../classes/Controllers/CarController.php';
 
     $car = new CarController($plateId, null, null, null, null, null, null);
-     $car->removeCar($plateId);
-    header("Location: ../resources/Admin/viewAllCars.php");
+    $car->removeCar($plateId);
+    header("Location: ../../resources/Admin/viewAllCars.php");
 }
-?>

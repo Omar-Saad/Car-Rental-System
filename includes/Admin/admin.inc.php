@@ -6,9 +6,9 @@ global $admin;
 
 if (isset($_SESSION["admin_id"])) {
 
-    include(dirname(__FILE__) . '/../classes/Models/Dbh.php');
-    include(dirname(__FILE__) . '/../classes/Models/Admin.php');
-    include(dirname(__FILE__) . '/../classes/Controllers/AdminController.php');
+    include  '../../classes/Models/Dbh.php';
+    include '../../classes/Models/Admin.php';
+    include '../../classes/Controllers/AdminController.php';
 
     $id = $_SESSION["admin_id"];
     $controller = new AdminController();

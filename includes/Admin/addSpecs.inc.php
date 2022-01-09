@@ -13,12 +13,12 @@ if (isset($_POST["submit"])) {
     else
         $ac = 0;
 
-    include '../classes/Models/Dbh.php';
-    include '../classes/Models/Car.php';
-    include '../classes/Controllers/CarController.php';
+    include '../../classes/Models/Dbh.php';
+    include '../../classes/Models/Car.php';
+    include '../../classes/Controllers/CarController.php';
 
     CarController::addSpec($_SESSION['plate_id'], $transmission, $body_style,$ac, $seats_count, $engine_capacity, $fuel_consumption, $air_bags_count);
 
-    header("Location: ../resources/Admin/viewAllCars.php");
+    header("Location: ../../resources/Admin/viewAllCars.php");
 
 }

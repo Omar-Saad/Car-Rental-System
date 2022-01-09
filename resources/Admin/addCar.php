@@ -34,10 +34,10 @@ session_start();
 </header>
 
 <div>
-    <form id="register_form" class="form_register" method="POST" action="../../includes/addCar.inc.php"
+    <form id="register_form" class="form_register" method="POST" action="../../includes/Admin/addCar.inc.php"
           onsubmit="return validateCar()">
         <h2>Add Car</h2>
-        <div class="error" id="error"><?php include '../partials/addCar.validate.php'; ?></div>
+        <div class="error" id="error"><?php include '../partials/Admin/addCar.validate.php'; ?></div>
         <div>
             <label for="plate_id">Plate ID</label>
             <input type="text" id="plate_id" name="plate_id" placeholder="Plate ID">
@@ -87,7 +87,7 @@ session_start();
 </div>
 
 
-<script src="../js/car.js"></script>
+<script src="../../js/car.js"></script>
 
 </body>
 </html>

@@ -11,15 +11,18 @@ if (isset($_POST["submit"])) {
     $year = $_POST["year"];
     $car_image = $_POST["car_image"];
     $location = $_POST["location"];
-    $status = $_POST["status"];
-   
 
-    include '../classes/Models/Dbh.php';
-    include '../classes/Models/Car.php';
-    include '../classes/Controllers/CarController.php';
+    if (isset($_POST["status"]))
+        $status = $_POST["status"];
+    else
+        $status = 0;
+
+    include '../../classes/Models/Dbh.php';
+    include '../../classes/Models/Car.php';
+    include '../../classes/Controllers/CarController.php';
 
     $car = new CarController($plateId, $model, $price, $year, $status, $car_image, $location);
-    $car->modifyCar();
-    header("Location: ../resources/Admin/viewAllCars.php");
+    $car->addCar();
+    header("Location: ../../resources/Admin/addSpecs.php");
 
 }

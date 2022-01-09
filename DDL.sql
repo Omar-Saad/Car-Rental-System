@@ -6,8 +6,8 @@ CREATE TABLE car
     plate_id   VARCHAR(12) UNIQUE,
     model      VARCHAR(512) NOT NULL,
     price      float        NOT NULL,
-    `year` YEAR NOT NULL,
-    `status`   VARCHAR(512)          NOT NULL,
+    `year`     YEAR NOT NULL,
+    `status`   VARCHAR(512) NOT NULL,
     image_link TEXT,
     location   VARCHAR(512),
     PRIMARY KEY (plate_id)
@@ -30,14 +30,14 @@ CREATE TABLE specs
 
 CREATE TABLE customer
 (
-    cust_id       int          NOT NULL UNIQUE AUTO_INCREMENT,
-    ssn           int          NOT NULL UNIQUE,
-    name          VARCHAR(512) NOT NULL,
-    address       VARCHAR(512) NOT NULL,
-    phone         VARCHAR(512) NOT NULL,
+    cust_id       int                 NOT NULL UNIQUE AUTO_INCREMENT,
+    ssn           int                 NOT NULL UNIQUE,
+    name          VARCHAR(512)        NOT NULL,
+    address       VARCHAR(512)        NOT NULL,
+    phone         VARCHAR(512)        NOT NULL,
     profile_image TEXT,
     email         VARCHAR(512) UNIQUE NOT NULL,
-    `password`    VARCHAR(512) NOT NULL,
+    `password`    VARCHAR(512)        NOT NULL,
 
     PRIMARY KEY (cust_id)
 );
@@ -45,12 +45,12 @@ CREATE TABLE customer
 
 CREATE TABLE admin
 (
-    admin_id      int          NOT NULL UNIQUE AUTO_INCREMENT,
-    ssn           int          NOT NULL UNIQUE,
-    name          VARCHAR(512) NOT NULL,
+    admin_id      int                 NOT NULL UNIQUE AUTO_INCREMENT,
+    ssn           int                 NOT NULL UNIQUE,
+    name          VARCHAR(512)        NOT NULL,
     profile_image TEXT,
     email         VARCHAR(512) UNIQUE NOT NULL,
-    `password`    VARCHAR(512) NOT NULL,
+    `password`    VARCHAR(512)        NOT NULL,
 
     PRIMARY KEY (admin_id)
 );
