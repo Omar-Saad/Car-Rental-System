@@ -17,7 +17,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while ($row = $result->fetch_assoc()) {
-    echo "plate id: " . $row["plate_id"] . " - Body Style: " . $row["body_style"] . " - Transmission: " . $row["transission"] . "<br>";
+    echo "plate id: " . $row["plate_id"] . " - Body Style: " . $row["body_style"] . " - Transmission: " . $row["transmission"] . "<br>";
   }
 } else {
   echo "0 results";

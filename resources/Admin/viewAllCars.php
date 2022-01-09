@@ -8,7 +8,7 @@ session_start();
 
 if (!isset($_SESSION["admin_id"])) {
     //UNAUTHORIZED USER
-    header("Location: ../Login");
+    header("Location: ../../index.php?error=unAuth");
 }
 
 
