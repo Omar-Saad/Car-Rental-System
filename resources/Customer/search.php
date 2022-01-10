@@ -1,4 +1,7 @@
 <?php
+
+
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -60,6 +63,19 @@ if ($result->num_rows > 0) { ?>
         <link rel="stylesheet" type="text/css" href="customer.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+
+    <header>
+    <?php
+
+
+    if (!isset($_SESSION["cust_id"])) {
+        //UNAUTHORIZED USER
+        header("Location: ../../index.php?error=unAuth");
+        session_destroy();
+    }
+    ?>
+</header>
+
     <?php
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); ?>
 
@@ -97,6 +113,7 @@ if ($result->num_rows > 0) { ?>
                 </div>
             </section>
     </body>
+
 <?php
 
         }

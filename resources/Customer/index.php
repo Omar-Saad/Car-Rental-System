@@ -49,6 +49,18 @@ $conn->close();
 
 </head>
 
+<header>
+    <?php
+
+
+    if (!isset($_SESSION["cust_id"])) {
+        //UNAUTHORIZED USER
+        header("Location: ../../index.php?error=unAuth");
+        session_destroy();
+    }
+    ?>
+</header>
+
 <body>
 
 <div class="topnav">

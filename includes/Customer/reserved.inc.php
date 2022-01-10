@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,7 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-session_start();
 
 if (isset($_POST['submit'])) {
     $plate_id = $_POST['plate_id'];
@@ -43,8 +43,14 @@ if (isset($_POST['submit'])) {
             INSERT INTO reservation (plate_id, res_date, return_date , cust_id ,location)
                 VALUES ('".$plate_id."','".$res_date."','".$ret_date."','".$cust_id."','".$location."');";
         
-            if($result = mysqli_query($conn, $sql))
-            header("Location: ../../resources/Customer/payment.php");
+            if($result = mysqli_query($conn, $sql)){
+                $sql = "SELECT LAST_INSERT_ID() AS res_id;";
+                $result = mysqli_query($conn, $sql);
+                $res_id = mysqli_fetch_all($result, MYSQLI_ASSOC)[0]['res_id'];
+                
+            header("Location: ../../resources/Customer/payment.php?res_id=".$res_id."&plate_id=".$plate_id);
+
+            }
                 else
                 header("Location: ../../resources/Customer/reserved.php?plate_id=".$plate_id."&error=true");
         }

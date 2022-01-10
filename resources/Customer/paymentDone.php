@@ -1,6 +1,5 @@
 <?php
-
-include '../../includes/Customer/payment.inc.php';
+session_start();
 
 ?>
 
@@ -21,9 +20,6 @@ include '../../includes/Customer/payment.inc.php';
     <link rel="stylesheet" href="reservation.css">
 </head>
 <header>
-
-</header>
-<header>
     <?php
 
 
@@ -35,28 +31,17 @@ include '../../includes/Customer/payment.inc.php';
     ?>
 </header>
 
+
 <body>
     <div class="out_div">
-    <!-- <div class="error_res" id="error_res"><?php echo $error;?></div> -->
-    <h2 style="text-align: center;"><?php echo $car['model']; ?></h2>
-    <br />
-        <img src="<?php echo $image_link; ?>" class="img-fluid" alt="Responsive image">
-        <br />
-        <br />
-        <h4>Reservation Number : <?php echo $res_id; ?></h4>
     
-       
-        <h4>Day Price : <?php echo $price; ?> EGP / Day</h4>
-        <h4>Reservation From : <?php echo $res_date; echo "  TO ".$ret_date; ?></h4>
-        <h4>Number Of Days : <?php echo $rent_days; ?> Days</h4>
-        <h4>Total Price : <?php echo $total_amount; ?> EGP</h4>
-        <form action="../../includes/Customer/payment.inc.php" method="POST">
-            
-            <input type="hidden" id="res_id" name="res_id" value="<?php echo $res_id; ?>"></input>
-            <input type="hidden" id="total_amount" name="total_amount" value="<?php echo $total_amount; ?>"></input>
-            <button style=" float:right;" id="submit_pay"name="submit_pay" type="submit" class="btn btn-danger">PAY NOW</button>
+    <h2 style="text-align: center;">Payment is Done Successfully</h2>
+    <br />
+      
+        <h4>Thank You  <?php echo $_SESSION['cust_name']; ?></h4>
+    
+        <a style="float: right; background-color: teal;" class="btn btn-primary" href="index.php" role="button">Back To Home</a>
 
-        </form>
 
     </div>
 
