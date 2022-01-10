@@ -103,14 +103,14 @@ $conn->close();
                     </td>
                     <td><label for="engine capacity">engine capacity</label>
                         <input type="text" placeholder="engine_capacity" id="engine_capacity" name="engine_capacity">
-                    </td>
-                    <!-- <td><label for="res_date">reservation date</label>
-                        <input type="date" placeholder="res_date" id="res_date" name="res_date">
-                    </td> -->
+<!--                    </td>-->
+<!--                    <td><label for="res_date">reservation date</label>-->
+<!--                        <input type="date" placeholder="res_date" id="res_date" name="res_date">-->
+<!--                    </td>-->
                 </tr>
             </tbody>
         </table>
-        <button type="submit"><i class="fa fa-search"></i></button>
+        <button type="submit" name="submit"><i class="fa fa-search"></i></button>
 
 
         <input type="reset" value="Reset" style="background-color: green; 
@@ -139,7 +139,7 @@ $conn->close();
                                     <li><i class="fa fa-cog" aria-hidden="true"></i> <?php echo $car['transmission']; ?></li>
                                 </ul>
                                 <div class="car-title-m">
-                                    <h6><a href="car_details.php?vhid=2"> <?php echo $car['model'] ?></a></h6>
+                                    <h3> <?php echo $car['model'] ?></h3>
                                     <span class="price"><?php echo $car['price']; ?> EGP / Day</span>
                                 </div>
 
@@ -174,9 +174,9 @@ $conn->close();
             body_style = document.getElementById("body_style").value;
             seats_count = document.getElementById("seats_count").value;
             engine_capacity = document.getElementById("engine_capacity").value;
-            res_date = document.getElementById("res_date").value;
+            // res_date = document.getElementById("res_date").value;
 
-            if (plate_id == '' && model == '' && price == '' && year == '' && transmission == '' && body_style == '' && seats_count == '' && engine_capacity == '' && !Date.parse(res_date)) {
+            if (plate_id == '' && model == '' && price == '' && year == '' && transmission == '' && body_style == '' && seats_count == '' && engine_capacity == '') {
                 alert('Search bars empty. Please type in any value.');
                 return false;
             }

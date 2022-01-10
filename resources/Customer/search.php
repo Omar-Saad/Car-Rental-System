@@ -47,21 +47,42 @@ if (!empty($_POST['engine_capacity'])) {
     $engine_capacity = $_POST['engine_capacity'];
     $where[] = 'engine_capacity = ' . $engine_capacity . '';
 }
-
-
+//if (!empty($_POST['res_date'])){
+//    $date = $_POST['res_date'];
+//    $where[] = 'res';
+//    $query ="SELECT * ".
+//            "FROM car WHERE NOT EXISTS (
+//            SELECT plate_id FROM reservation where ".$date." BETWEEN res_date AND return_date );";
+//}
 if (count($where)) {
     $query = 'SELECT * FROM car NATURAL JOIN specs WHERE ' . implode(' AND ', $where);
+    $result = $conn->query($query);
 }
 
 
-$result = $conn->query($query);
-
-if ($result->num_rows > 0) { ?>
+if ($result) { ?>
 
     <head>
         <title>Search results</title>
-        <link rel="stylesheet" type="text/css" href="customer.css">
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+        <meta content="Author" name="WebThemez">
+        <!-- Favicons -->
+        <link href="img/favicon.png" rel="icon">
+        <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+
+        <!-- Bootstrap CSS File -->
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="customer.css">
     </head>
 
     <header>
@@ -100,11 +121,20 @@ if ($result->num_rows > 0) { ?>
                                         <li><i class="fa fa-user" aria-hidden="true"></i> <?php echo $row['seats_count']; ?> seats</li>
                                     </ul>
                                     <div class="car-title-m">
-                                        <h6><a href="car_details.php?vhid=2"> <?php echo $row['model'] ?></a></h6>
+                                        <h3> <?php echo $row['model'] ?></h3>
                                         <span class="price"><?php echo $row['price']; ?> EGP</span>
                                     </div>
+
                                     <div class="inventory_info_m ">
                                         <p>Available in <?php echo $row['location']; ?></p>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <div class="col-sm-12 text-center">
+                                        <form action="reserved.php" method="GET">
+                                            <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $car['plate_id'] ?>"></input>
+                                            <button type="submit" id="reserve" class="btn btn-primary btn-md center-block" Style="width: 200px;">I want To Reserve</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
