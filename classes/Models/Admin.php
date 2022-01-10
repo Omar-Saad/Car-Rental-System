@@ -34,7 +34,7 @@ class Admin extends Dbh
 
     public function getRevenue()
     {
-        $query = "SELECT *" . " FROM reservation;";
+        $query = "SELECT SUM(amount_paid)" . " FROM reservation;";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $rev = $stmt->fetchColumn();
@@ -135,12 +135,12 @@ class Admin extends Dbh
 
             if (!$stmt->execute(array($custId))) {
                 $stmt = NULL;
-                header("Location: ../resources/Admin/viewAllCustomers.php?error=stmtFailed");
+                header("Location: ../../resources/Admin/viewAllCustomers.php?error=stmtFailed");
                 exit();
             }
             else{
             $stmt = NULL;
-            header("Location: ../resources/Admin/viewAllCustomers.php");
+            header("Location: ../../resources/Admin/viewAllCustomers.php");
             exit();
             }
         
@@ -158,12 +158,12 @@ class Admin extends Dbh
 
         if (!$stmt->execute(array($resId))) {
             $stmt = NULL;
-            header("Location: ../resources/Admin/viewAllReservation.php?error=stmtFailed");
+            header("Location: ../../resources/Admin/viewAllReservation.php?error=stmtFailed");
             exit();
         }
         else{
         $stmt = NULL;
-        header("Location: ../resources/Admin/viewAllReservation.php");
+        header("Location: ../../resources/Admin/viewAllReservation.php");
         exit();
         }
     

@@ -72,7 +72,7 @@ class Register extends Dbh
             exit();
         }
         $stmt = NULL;
-
+        // $_SESSION['cust_name'] = $_cus
         header("Location: ../resources/Customer/index.php");
 
     }

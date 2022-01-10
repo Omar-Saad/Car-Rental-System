@@ -104,9 +104,9 @@ $conn->close();
                     <td><label for="engine capacity">engine capacity</label>
                         <input type="text" placeholder="engine_capacity" id="engine_capacity" name="engine_capacity">
                     </td>
-                    <td><label for="res_date">reservation date</label>
+                    <!-- <td><label for="res_date">reservation date</label>
                         <input type="date" placeholder="res_date" id="res_date" name="res_date">
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
@@ -152,7 +152,7 @@ $conn->close();
                                 <div class="col-sm-12 text-center">
                                     <form action="reserved.php" method="GET">
                                         <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $car['plate_id'] ?>"></input>
-                                        <button type="submit" id="reserve" class="btn btn-primary btn-md center-block" Style="width: 200px;">Reserve and pay later</button>
+                                        <button type="submit" id="reserve" class="btn btn-primary btn-md center-block" Style="width: 200px;">I want To Reserve</button>
                                     </form>
 
                                 </div>

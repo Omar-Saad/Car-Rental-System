@@ -20,6 +20,6 @@ if (isset($_POST["submit"])) {
 
     $admin = new Admin();
      $admin->removeReservation($resId);
-    header("Location: ../resources/Admin/viewAllReservation.php");
+    header("Location: ../../resources/Admin/viewAllReservation.php");
 }
 ?>

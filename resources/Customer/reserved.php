@@ -34,7 +34,7 @@
     <div class="error_res" id="error_res"><?php echo $error;?></div>
     <h2 style="text-align: center;"><?php echo $car['model']; ?></h2>
     <br />
-        <img src="<?php echo $car['image_link']; ?>" class="img-fluid" alt="Responsive image">
+        <img  src="<?php echo $car['image_link']; ?>" class="img-fluid" alt="Responsive image">
         <br />
         <br />
         <h4>Car Specs</h4>
