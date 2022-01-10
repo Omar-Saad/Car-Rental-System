@@ -60,7 +60,7 @@ if (count($where)) {
 }
 
 
-if ($result) { ?>
+if ($result->num_rows) { ?>
 
     <head>
         <title>Search results</title>
@@ -132,7 +132,7 @@ if ($result) { ?>
                                 <div class="card-action">
                                     <div class="col-sm-12 text-center">
                                         <form action="reserved.php" method="GET">
-                                            <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $car['plate_id'] ?>"></input>
+                                            <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $row['plate_id'] ?>"></input>
                                             <button type="submit" id="reserve" class="btn btn-primary btn-md center-block" Style="width: 200px;">I want To Reserve</button>
                                         </form>
                                     </div>
@@ -150,14 +150,6 @@ if ($result) { ?>
     } else {
         echo "Sorry, no cars with the given specs are available";
     }
-
-
-
-
-
-
-
-
 
     $conn->close();
 ?>
